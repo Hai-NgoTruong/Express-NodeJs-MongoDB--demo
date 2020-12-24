@@ -1,0 +1,27 @@
+extends ../layouts/common
+
+block content
+    h1 product
+
+    .d-flex.aline-items-center
+        form.ml-auto(method="GET")
+            input(type="text", name="q")
+            button Search
+    div.row
+        each product in products
+            div.col-md-3
+                div.card
+                    img(src=product.image).card-img-top
+                    div.card-body
+                        h4.cart-title
+                            span=product.name
+                        p.cart-text
+                            span=product.description
+                        a.btn.btn-primary(href='/cart/add/'+ product.id) add To Cart 
+
+    nav(aria-label='Page navigation example')
+        ul.pagination.justify-content-center
+            li.page-item
+              a.page-link(href='/product?page='+(page -1)) Previous
+            li.page-item
+              a.page-link(href='/product?page='+(page +1)) Next
