@@ -1,10 +1,9 @@
-require('dotenv').config()
-
 var express = require('express');
 var app = express();
 
+require('dotenv').config()
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/Express', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
 var userRoute = require('./routes/user.route')
 var authRoute = require('./routes/auth.route')
@@ -17,7 +16,7 @@ var sessionMiddleware = require('./middlewares/session.middleware')
 var authMiddleware = require('./middlewares/auth.middleware')
 
 var homeRoute = require('./routes/home.route')
-var port  = 3000;
+var port  = 3000; // mvc
 
 app.use(cookieParser(process.env.SESSION_SECRET))
 
@@ -45,3 +44,4 @@ app.listen(port,function(){
 });			
 	
 
+  

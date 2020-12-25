@@ -1,20 +1,18 @@
 module.exports.postAdd = function(req, res, next){
 	 errors = [];
-	if(!req.body.name){
+	 let Username = req.body.name;
+	 let UserPhone = req.body.phone;
+	if(!Username){
 		errors.push('Name is required');
 	}
-	if(!req.body.phone){
+	if(!UserPhone){
 		errors.push('Phone is required');
 	}
-	if(!reg.body.avatar){
-		
-	}
 	if(errors.length){
-		res.render('users/add',{
+		return res.render('users/add',{
 			errors : errors,
 			values : req.body
 		});
-		return;
 	}
 	next();
 }
